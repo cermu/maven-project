@@ -3,10 +3,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mulesoft.training</groupId>
-	<artifactId>maven-project</artifactId>
+	<artifactId>maven-project-sk</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule</packaging>
-	<name>Mule maven-project Application</name>
+	<name>Mule maven-project-sk Application</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,10 +15,36 @@
 		<mule.version>3.8.5</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
 		<derby.version>10.14.1.0</derby.version>
+		<uid>samu</uid>
+		<pwd></pwd>
 	</properties>
 
 	<build>
 		<plugins>
+			<plugin>
+			    <groupId>org.mule.tools.maven</groupId>
+			    <artifactId>mule-maven-plugin</artifactId>
+			    <version>2.0</version>
+			    <configuration>
+			        <deploymentType>cloudhub</deploymentType>
+			        <muleVersion>${mule.version}</muleVersion>
+			        <username>${uid}</username>
+			        <password>${pwd}</password>
+				      <workerType>Micro</workerType>
+			        <redeploy>true</redeploy>
+			        <environment>Sandbox</environment>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>deploy</id>
+			            <phase>deploy</phase>
+			            <goals>
+			                <goal>deploy</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-app-maven-plugin</artifactId>
